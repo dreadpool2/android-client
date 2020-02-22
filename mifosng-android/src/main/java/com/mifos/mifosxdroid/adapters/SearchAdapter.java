@@ -55,12 +55,13 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             SearchedEntity searchedEntity = searchedResults.get(position);
             ((ViewHolder) holder).tv_name.setText(searchedEntity.getDescription());
 
+            String[] withoutNumEntry = searchedEntity.getDescription().split("-", 2);
             TextDrawable drawable;
             if (searchedEntity.getEntityName() != null &&
                     searchedEntity.getEntityName().trim().length() > 0) {
                 drawable = mDrawableBuilder.build(String.valueOf(
-                        searchedEntity.getEntityType().charAt(0)),
-                        mColorGenerator.getColor(searchedEntity.getEntityType()));
+                        withoutNumEntry[1].charAt(1)),
+                        mColorGenerator.getColor(withoutNumEntry[1]));
                 ((ViewHolder) holder).iv_icon.setImageDrawable(drawable);
             }
         }
